@@ -1,0 +1,24 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Streamlit
+.streamlit/
+
+# Variáveis de ambiente
+.env
+.env.local
+
+# macOS
+.DS_Store
+
+# Distribuição / build
+dist/
+build/
+*.egg-info/
