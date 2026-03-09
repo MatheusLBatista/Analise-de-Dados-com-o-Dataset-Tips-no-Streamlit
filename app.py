@@ -33,4 +33,20 @@ st.write("Coeficiente de correlação:", corr)
 
 st.write("O coeficiente de correlação entre total_bill e tip foi de aproximadamente 0.67, indicando uma correlação positiva entre moderada e forte. No entando, a correlação não é perfeita pois existem variações nos comportamentos dos clientes.")
 
+st.subheader("3 - Qual dia da semana apresenta a maior média de gorjeta? Mostre isso visualmente e explique sua conclusão.")
 
+weekday_average = df.groupby('day')['tip'].mean()
+
+st.write(weekday_average)
+
+sns.barplot(
+    data = df,
+    x = 'day',
+    y = 'tip',
+    estimator = 'mean',
+    ax = ax
+)
+
+st.pyplot(fig)
+
+st.write("Com base no gráfico de barras acima, podemos visualizar os dias com maiores gorjetas por meio da média. Sendo domingo o dia com maior gorjetas.")
