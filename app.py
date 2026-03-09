@@ -25,3 +25,12 @@ sns.regplot(
 st.pyplot(fig)
 
 st.write("Sim, há uma correlação positiva entre o valor total da conta e o valor da gorjeta. À medida que o valor total da conta aumenta, o valor da gorjeta também tende a aumentar. Isso se torna visível no gráfico, onde os pontos apresentados formam uma tendência ascendente, evidenciando que os clientes tendem a dar gorjetas maiores quando a conta é mais cara.")
+
+st.subheader("2 - Quanto maior a conta, maior tende a ser a gorjeta?")
+
+corr = df['total_bill'].corr(df['tip'])
+st.write("Coeficiente de correlação:", corr)
+
+st.write("O coeficiente de correlação entre total_bill e tip foi de aproximadamente 0.67, indicando uma correlação positiva entre moderada e forte. No entando, a correlação não é perfeita pois existem variações nos comportamentos dos clientes.")
+
+
