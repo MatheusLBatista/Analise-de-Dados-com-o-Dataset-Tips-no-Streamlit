@@ -107,3 +107,24 @@ st.write("Correlação:", round(corr,2))
 
 st.write("Existe uma correlação positiva entre o número de pessoas na mesa e o valor total da conta, indicando que, em geral, mesas com mais pessoas tendem a ter contas maiores. No entanto, a correlação não é muito forte, em torno de 0.6, sugerindo que outros fatores também influenciam o valor total da conta.")
 
+st.subheader("7 - Qual é o valor médio gasto por pessoa em cada dia da semana?")
+
+df['spending_per_person'] = df['total_bill'] / df['size']
+
+average_spending_per_day = df.groupby('day')['spending_per_person'].mean()
+
+fig, ax = plt.subplots()
+
+sns.barplot(
+    data=df,
+    x="day",
+    y="spending_per_person",
+    estimator=np.mean,
+    ax=ax
+)
+
+ax.set_title("Valor médio gasto por pessoa por dia")
+ax.set_ylabel("Gasto médio por pessoa")
+ax.set_xlabel("Dia da semana")
+
+st.pyplot(fig)
