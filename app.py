@@ -88,3 +88,22 @@ st.write('Correlação: ', corr)
 
 st.write("Existe uma correlação positiva entre o número de pessoas na mesa e o valor da gorjeta, indicando que, em geral, mesas com mais pessoas tendem a receber gorjetas maiores. No entanto, a correlação não é muito forte, sugerindo que outros fatores também influenciam o valor da gorjeta.")
 
+st.subheader("6 - Existe relação entre o número de pessoas na mesa (size) e o valor total da conta (total_bill)?")
+
+fig, ax = plt.subplots()
+
+sns.regplot(
+    data=df,
+    x="size",
+    y="total_bill",
+    ax=ax
+)
+
+st.pyplot(fig)
+
+corr = df["size"].corr(df["total_bill"])
+
+st.write("Correlação:", round(corr,2))
+
+st.write("Existe uma correlação positiva entre o número de pessoas na mesa e o valor total da conta, indicando que, em geral, mesas com mais pessoas tendem a ter contas maiores. No entanto, a correlação não é muito forte, em torno de 0.6, sugerindo que outros fatores também influenciam o valor total da conta.")
+
