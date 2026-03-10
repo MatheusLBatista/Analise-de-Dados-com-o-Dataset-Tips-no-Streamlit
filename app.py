@@ -50,3 +50,22 @@ sns.barplot(
 st.pyplot(fig)
 
 st.write("Com base no gráfico de barras acima, podemos visualizar os dias com maiores gorjetas por meio da média. Sendo domingo o dia com maior gorjetas.")
+
+st.subheader("4 - Qual dia da semana possui o maior faturamento total do restaurante, considerando a soma de total_bill?")
+
+faturamento = df.groupby("day")["total_bill"].sum()
+
+st.write("Faturamento total por dia: ", faturamento)
+
+sns.barplot(
+    data = df,
+    x = "day",
+    y = "total_bill",
+    estimator = sum,
+    ax = ax
+)
+
+st.pyplot(fig)
+
+st.write("Com base no gráfico acima, podemos visualizar os dias com maior faturamento total do restaurante, considerando a soma dos valores das contas e gorjetas.")
+
