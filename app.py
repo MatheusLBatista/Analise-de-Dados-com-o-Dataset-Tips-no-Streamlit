@@ -69,3 +69,22 @@ st.pyplot(fig)
 
 st.write("Com base no gráfico acima, podemos visualizar os dias com maior faturamento total do restaurante, considerando a soma dos valores das contas e gorjetas.")
 
+st.subheader("5 - Existe relação entre o número de pessoas na mesa (size) e o valor da gorjeta (tip)?")
+
+fig, ax = plt.subplots()
+
+sns.regplot(
+    data=df,
+    x="size",
+    y="tip",
+    ax=ax
+)
+
+st.pyplot(fig)
+
+corr = df['size'].corr(df['tip'])
+
+st.write('Correlação: ', corr)
+
+st.write("Existe uma correlação positiva entre o número de pessoas na mesa e o valor da gorjeta, indicando que, em geral, mesas com mais pessoas tendem a receber gorjetas maiores. No entanto, a correlação não é muito forte, sugerindo que outros fatores também influenciam o valor da gorjeta.")
+
