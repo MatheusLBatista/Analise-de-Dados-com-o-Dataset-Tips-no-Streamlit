@@ -175,3 +175,28 @@ ax.set_ylabel("Média de gorjetas")
 st.pyplot(fig)
 
 st.write("Sim, há uma diferença muito pequena na média de gorjetas deixadas por fumantes e não fumantes. De acordo com os dados, os fumantes tendem a deixar gorjetas maiores em média do que os não fumantes.")
+
+st.subheader("10 - O turno da refeição (time) influencia no valor da conta ou da gorjeta?")
+
+tip_per_time = df.groupby("time")['tip'].mean()
+
+st.write(tip_per_time)
+
+fig, ax = plt.subplots()
+
+sns.barplot(
+    data = df,
+    x = 'time',
+    y = 'tip',
+    estimator = np.mean,
+    ax = ax
+)
+
+ax.set_title("Média de gorjetas por refeição")
+ax.set_xlabel("Refeições")
+ax.set_ylabel("Média de gorjetas")
+
+st.pyplot(fig)
+
+st.write("Sim, como visto no gráfico de barras, o turno da refeição influencia no valor da gorjeta. De acordo com os dados, as refeições durante o jantar tendem a receber gorjetas maiores em média do que as refeições durante o almoço.")
+
