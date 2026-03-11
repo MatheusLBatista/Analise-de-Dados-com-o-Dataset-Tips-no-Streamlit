@@ -128,3 +128,50 @@ ax.set_ylabel("Gasto médio por pessoa")
 ax.set_xlabel("Dia da semana")
 
 st.pyplot(fig)
+
+st.subheader("8 - Homens e mulheres deixam gorjetas diferentes, em média?")
+tip_per_gender = df.groupby("sex")["tip"].mean()
+
+st.write(tip_per_gender)
+
+fig, ax = plt.subplots()
+
+sns.barplot(
+    data=df,
+    x="sex",
+    y="tip",
+    estimator=np.mean,
+    ax=ax
+)
+
+ax.set_title("Média de gorjetas por gênero")
+ax.set_xlabel("Gênero")
+ax.set_ylabel("Média de gorjetas")
+
+st.pyplot(fig)
+
+st.write("Sim, há uma pequena diferença na média de gorjetas deixadas por homens e mulheres. De acordo com os dados, os homens tendem a deixar gorjetas maiores em média do que as mulheres.")
+
+st.subheader("9 - Fumantes e não fumantes apresentam comportamentos diferentes em relação ao valor da gorjeta?")
+
+tip_per_smoker = df.groupby("smoker")['tip'].mean()
+
+st.write(tip_per_smoker)
+
+fig, ax = plt.subplots()
+
+sns.barplot(
+    data = df,
+    x = 'smoker', 
+    y = 'tip',
+    estimator = np.mean,
+    ax = ax
+)
+
+ax.set_title("Média de gorjetas por fumantes")
+ax.set_xlabel("Fumante")
+ax.set_ylabel("Média de gorjetas")
+
+st.pyplot(fig)
+
+st.write("Sim, há uma diferença muito pequena na média de gorjetas deixadas por fumantes e não fumantes. De acordo com os dados, os fumantes tendem a deixar gorjetas maiores em média do que os não fumantes.")
