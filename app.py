@@ -143,6 +143,8 @@ ax.set_xlabel("Dia da semana")
 
 st.pyplot(fig)
 
+st.write("O valor médio gasto por pessoa em cada dia da semana varia, com o domingo apresentando o maior gasto médio por pessoa, seguido pelo sábado. Os dias de semana tendem a ter um gasto médio por pessoa mais baixo em comparação com os fins de semana, possivelmente devido a diferentes padrões de consumo e comportamento dos clientes durante a semana e nos fins de semana.")
+
 st.subheader("8 - Homens e mulheres deixam gorjetas diferentes, em média?")
 tip_per_gender = df.groupby("sex")["tip"].mean()
 
