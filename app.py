@@ -1,3 +1,5 @@
+# Matheus Lucas Batista - ADS 2024
+
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -21,6 +23,10 @@ sns.regplot(
     y = "tip",
     ax = ax
 )
+
+ax.set_title("Correlação entre valor total da conta e valor da gorjeta")
+ax.set_xlabel("Valor da conta")
+ax.set_ylabel("Gorjetas")
 
 st.pyplot(fig)
 
@@ -80,6 +86,10 @@ sns.regplot(
     ax=ax
 )
 
+ax.set_title("Correlação entre número de pessoas e valor da gorjeta")
+ax.set_xlabel("Número de pessoas")
+ax.set_ylabel("Gorjetas")
+
 st.pyplot(fig)
 
 corr = df['size'].corr(df['tip'])
@@ -98,6 +108,10 @@ sns.regplot(
     y="total_bill",
     ax=ax
 )
+
+ax.set_title("Correlação entre número de pessoas e valor total da conta")
+ax.set_xlabel("Número de pessoas")
+ax.set_ylabel("Valor total da conta")
 
 st.pyplot(fig)
 
@@ -235,6 +249,8 @@ sns.boxplot(
     ax=ax
 )
 
+ax.set_ylabel("Valor da conta")
+
 st.pyplot(fig)
 
 st.write("Boxplot do valor da gorjeta")
@@ -246,6 +262,8 @@ sns.boxplot(
     y="tip",
     ax=ax
 )
+
+ax.set_ylabel("Gorjeta")
 
 st.pyplot(fig)
 
@@ -262,6 +280,8 @@ sns.histplot(
     bins = 20,
     ax = ax
 )
+
+ax.set_xlabel("Valor total da conta")
 
 st.pyplot(fig)
 st.write("A distribuição do valor total da conta é concentrada em faixas de valores mais baixos, com a maioria das contas situando-se entre 10 e 30 dólares. Há uma barra longa que se estende para valores mais altos, indicando que existem algumas contas maiores, porém a maioria dos dados está concentrada em torno de valores mais baixos.")
