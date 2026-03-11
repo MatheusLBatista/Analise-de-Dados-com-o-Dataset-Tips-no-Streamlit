@@ -200,3 +200,84 @@ st.pyplot(fig)
 
 st.write("Sim, como visto no gráfico de barras, o turno da refeição influencia no valor da gorjeta. De acordo com os dados, as refeições durante o jantar tendem a receber gorjetas maiores em média do que as refeições durante o almoço.")
 
+st.subheader("11 - Qual grupo parece deixar a maior gorjeta proporcional à conta?")
+
+df['tip_porcentage'] = df['tip'] / df['total_bill'] * 100
+
+for col in ['sex', 'smoker', 'time', 'day']:
+    st.write(f"Analisando a coluna {col}:")
+    st.write(df.groupby(col)['tip_porcentage'].mean().round(2))
+
+    fig, ax = plt.subplots()
+    sns.barplot(
+        data=df,
+        x=col,
+        y='tip_porcentage',
+        estimator=np.mean,
+        ax=ax
+    )
+    ax.set_title(f"Gorjeta proporcional por {col}")
+    ax.set_xlabel(col)
+    ax.set_ylabel("Gorjeta (%)")
+    st.pyplot(fig)
+
+st.write("Com base na análise dos gráficos, os grupos que tendem a deixar a maior gorjeta proporcional à conta são: mulheres, fumantes, clientes do almoço e clientes de sexta-feira.")
+
+st.subheader("12 - Existem valores atípicos (outliers) no valor da conta ou da gorjeta?")
+
+st.write("Boxplot do valor total da conta")
+
+fig, ax = plt.subplots()
+
+sns.boxplot(
+    data=df,
+    y="total_bill",
+    ax=ax
+)
+
+st.pyplot(fig)
+
+st.write("Boxplot do valor da gorjeta")
+
+fig, ax = plt.subplots()
+
+sns.boxplot(
+    data=df,
+    y="tip",
+    ax=ax
+)
+
+st.pyplot(fig)
+
+st.write("Existem valores atípicos tanto no valor total da conta e da gorjeta. No gráfico de boxplot do valor total da conta e de gorjeta, podemos observar que há alguns pontos acima do limite superior. A influência desses outliers pode ser significativa, pois eles podem distorcer as médias e afetam a interpretação dos dados. É importante considerar esses outliers ao analisar o comportamento dos clientes e ao tomar decisões com base nesses dados.")
+
+st.subheader("13 - As distribuições de total_bill e tip são equilibradas ou concentradas em determinadas faixas de valores?")
+
+fig, ax = plt.subplots()
+
+sns.histplot(
+    data = df,
+    x = 'total_bill',
+    kde = True,
+    bins = 20,
+    ax = ax
+)
+
+st.pyplot(fig)
+st.write("A distribuição do valor total da conta é concentrada em faixas de valores mais baixos, com a maioria das contas situando-se entre 10 e 30 dólares. Há uma barra longa que se estende para valores mais altos, indicando que existem algumas contas maiores, porém a maioria dos dados está concentrada em torno de valores mais baixos.")
+
+st.subheader("14 - Se você fosse gerente do restaurante, quais insights esse dataset oferece sobre o comportamento dos clientes?")
+
+st.write("""
+Com base nas análises realizadas, os principais insights são:
+
+1. **Foco no fim de semana**: sábado e domingo concentram o maior faturamento. Vale reforçar equipe e estoque nesses dias.
+
+2. **Jantar é mais lucrativo em gorjetas**: clientes do jantar tendem a deixar gorjetas maiores. Investir no atendimento noturno pode aumentar a satisfação.
+
+3. **Grupos grandes geram mais receita**: mesas com mais pessoas resultam em contas maiores. Priorizar assentos para grupos é estratégico.
+
+4. **Perfil do cliente**: homens e fumantes tendem a deixar gorjetas ligeiramente maiores. Conhecer o perfil do cliente ajuda a personalizar o atendimento.
+
+5. **Outliers**: algumas contas muito altas sugerem eventos especiais. Criar pacotes ou menus para grupos pode capturar esse público.
+""")
